@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Prueba Meli</string>
+    <string name="app_name_mla">Prueba Meli MLA</string>
+    <string name="app_name_mlb">Prueba Meli MLB</string>
+    <string name="app_name_mlm">Prueba Meli MLM</string>
+    <string name="app_name_mlc">Prueba Meli MLC</string>
+    <string name="app_name_mco">Prueba Meli MCO</string>
+
+    <!--    categories-->
+    <string name="categories">Categorias</string>
+    <string name="loading">Cargando</string>
+    <string name="search">Buscar</string>
+
+    <!--errors-->
+    <string name="error_field_required">Campo requerido</string>
+    <string name="empty_list">No hay resultados para su busqueda</string>
+</resources>

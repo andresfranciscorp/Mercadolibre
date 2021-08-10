@@ -1,0 +1,9 @@
+<resources>
+    
+    <integer name="card_slide_transition_time">350</integer>
+    <integer name="card_slide_transition_guard_time">1000</integer>
+    <integer name="card_updown_transition_time">@android:integer/config_mediumAnimTime</integer>
+    <integer name="card_flip_delay">400</integer>
+    <integer name="half_slide_transition_time">175</integer>
+
+</resources>

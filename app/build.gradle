@@ -1,0 +1,121 @@
+apply plugin: 'com.android.application'
+def appId = "com.teclogi.teclogiDriver"
+android {
+    compileSdkVersion build_versions.compile_sdk
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.franciscorp.meli.pruebameli"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+        }
+    }
+
+
+    flavorDimensions "version"
+    productFlavors {
+        MLA {
+            dimension "version"
+            applicationIdSuffix ".mla"
+            manifestPlaceholders = [appName: "@string/app_name", appId: appId + ".mla"]
+        }
+        MLB {
+            dimension "version"
+            applicationIdSuffix ".mlb"
+            manifestPlaceholders = [appName: "@string/app_name_mlb", appId: appId + ".mlb"]
+        }
+        MLM {
+            dimension "version"
+            applicationIdSuffix ".mlm"
+            manifestPlaceholders = [appName: "@string/app_name_mlm", appId: appId + ".mlm"]
+        }
+        MLC {
+            dimension "version"
+            applicationIdSuffix ".mlc"
+            manifestPlaceholders = [appName: "@string/app_name_mlc", appId: appId + ".mlc"]
+        }
+        MCO {
+            dimension "version"
+            applicationIdSuffix ".mco"
+            manifestPlaceholders = [appName: "@string/app_name_mco", appId: appId + ".mco"]
+        }
+    }
+
+}
+
+dependencies {
+
+    implementation deps.app_compat
+    implementation deps.fragment.runtime
+    implementation deps.material
+
+    // Architecture components
+    implementation deps.lifecycle.runtime
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    annotationProcessor deps.lifecycle.compiler
+    implementation deps.room.runtime
+    annotationProcessor deps.room.compiler
+    implementation deps.room.rxjava2
+
+    // RxJava
+    implementation deps.rx_android
+    implementation deps.rxjava2
+
+    // Lottie
+    implementation deps.lottie
+
+    //  retrofit
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+
+    //  picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // Dependencies for local unit tests
+    testImplementation deps.junit
+    testImplementation deps.hamcrest
+    testImplementation deps.arch_core.testing
+    testImplementation deps.mockito.core
+
+    // Android Testing Support Library's runner and rules
+    androidTestImplementation deps.atsl.ext_junit
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation 'androidx.test:rules:1.4.0'
+    androidTestImplementation deps.room.testing
+    androidTestImplementation deps.arch_core.testing
+
+    // Dependencies for Android unit tests
+    androidTestImplementation deps.junit
+    androidTestImplementation deps.mockito.core, { exclude group: 'net.bytebuddy' }
+    androidTestImplementation deps.dexmaker
+
+    // Espresso UI Testing
+    androidTestImplementation deps.espresso.core
+    androidTestImplementation deps.espresso.contrib
+    androidTestImplementation deps.espresso.intents
+
+    // Resolve conflicts between main and test APK:
+    androidTestImplementation deps.annotations
+    androidTestImplementation deps.app_compat
+    androidTestImplementation deps.material
+}
